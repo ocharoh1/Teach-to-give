@@ -1,0 +1,150 @@
+body{
+    background-color: #e3dfd3;
+    margin: 40px;
+ 
+}
+
+.main{
+    background-color:red;
+
+}
+
+section{
+    background-color:white;
+    height: 150vh;
+    border: 10px lightblue;
+    border-radius: 15px;
+}
+
+
+
+.navbar{
+    display: flex;
+    background-color:white;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 30px;
+}
+
+a:hover{
+    color: red;
+}
+
+ul{
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    padding: 15px;
+    margin: 15px;
+    justify-content: space-between;
+    text-align: center;
+}
+
+li{
+    justify-content: space-between;
+    color: black;
+    padding: 9px;
+    margin: 2px;
+}
+
+.select{
+
+}
+
+a{
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    margin: 10px;
+    color: black;
+    background-color: ;
+}
+.buttons{
+    padding: 20px;
+    justify-content: space-between;
+}
+button{
+    background-color:white;
+    color: black;
+    padding: 10px;
+    margin: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.Register{
+    border: 5px solid black;
+    border-radius: 30px;
+    width: 160px;
+}
+
+.login{
+    background-color: rgb(223, 219, 219);
+    border-radius: 20px;
+    width: 160px;
+}
+
+.login:hover{
+    color:green;
+}
+
+.content{
+    display: flex;
+    justify-content: space-between;
+    margin:70px;
+    padding: 0px;
+}
+
+h1{
+    font-size: 90px;
+    font-family: 'Times New Roman', Times, serif;
+    padding: 0px;
+
+}
+
+h1:hover{
+    cursor: pointer;
+    color:#d6a727;
+}
+
+p{
+    font-size: 20px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.more{
+    background-color:black;
+    color:white;
+    font-weight: 100;
+    border: 20px;
+    border-radius: 30px;
+    width: 250px; 
+}
+
+.more:hover{
+    color:yellowgreen;
+}
+
+.logo{
+    height: 20px;
+    width: 40px;
+}
+.hero{
+    height: 400px;
+    width: 400px;
+}
+
+
+
+.sponsors{
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    margin: 50px;
+    width: 550px;
+}
+
+.sponsors:hover{
+    color: #d6a727;
+}
+
