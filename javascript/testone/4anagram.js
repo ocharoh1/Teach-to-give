@@ -13,10 +13,10 @@ function areAnagrams( str1, str2){
         string2 = string2.split('').sort().join('')
 
         if (string1 == string2){
-            console.log('is an anagram')
+            console.log('true')
         }
         else{
-            console.log('is not an anagram')
+            console.log('false')
         }
 }
 }
