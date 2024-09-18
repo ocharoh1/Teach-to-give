@@ -1,104 +1,79 @@
-const users = [
-  {
-    id: 1,
-    name: "John",
-    location: "New York",
-    friends: [2, 3, 4],
-    posts: [
-      { content: "Great day at Central Park!", timestamp: "2024-09-10T12:00:00", likes: 15 },
-      { content: "Loving the vibes in NYC!", timestamp: "2024-05-15T08:30:00", likes: 8 },
-      { content: "Visited the Statue of Liberty today!", timestamp: "2024-09-13T17:45:00", likes: 20 }
-    ]
-  },
-  {
-    id: 2,
-    name: "Jane",
-    location: "Los Angeles",
-    friends: [1, 3],
-    posts: [
-      { content: "Hiking at Griffith Park!", timestamp: "2024-09-14T10:00:00", likes: 5 },
-      { content: "Great weather in LA", timestamp: "2024-09-06T11:15:00", likes: 12 }
-    ]
-  },
-  {
-    id: 3,
-    name: "Alice",
-    location: "Chicago",
-    friends: [1, 2],
-    posts: [
-      { content: "Windy day at the park", timestamp: "2024-08-01T14:00:00", likes: 7 }
-    ]
-  }
-];
 
-function calculateAverageLikes(usersArray) {
-  
-  const today = new Date();
-  
-  // Create a date object representing the date 7 days ago
-  const sevenDaysAgo = new Date(today.setDate(today.getDate() - 7));
-  
-  // Process users to extract relevant data
-  const { totalLikes, totalUsers, userDetails } = usersArray
-    .map(user => {
-     
-      const recentPosts = user.posts.filter(post => new Date(post.timestamp) >= sevenDaysAgo);
-     
-       const popularPosts = recentPosts.filter(post => post.likes >= 10);
-      
-          return popularPosts.length > 0 ? {
-        userId: user.id,
-        userName: user.name,
-        posts: popularPosts
-      } : null;
-    })
-    .filter(user => user !== null) // Remove users with no popular posts
-    .reduce((acc, user) => {
-      // Calculate total likes by summing the likes of popular posts
-      const totalLikes = acc.totalLikes + user.posts.reduce((sum, post) => sum + post.likes, 0);
-      
-      const totalUsers = acc.totalUsers + 1; 
-      
-      acc.userDetails.push({ id: user.userId, name: user.userName });
-      
-      // Return updated accumulator object
-      return { 
-        totalLikes, 
-        totalUsers, 
-        userDetails: acc.userDetails 
-      };
-    }, { totalLikes: 0, totalUsers: 0, userDetails: [] });
+// Q1 create a The function should:
+// 1.	Use the rest operator to capture all arguments except the first one.
+// 2.	Filter the numbers using the provided filter function.
+// 3.	Sort the filtered numbers in ascending order.
+// 4.	Return the sorted array of numbers
 
-  // Calculate average likes per user
-  const averageLikes = totalUsers > 0 ? totalLikes / totalUsers : 0;
-
-  return { averageLikes, userDetails, numberOfActiveUsers: totalUsers };
+function filterAndSort(filterFn, ...numbers){
+    const filteredNumbers = numbers.filter(filterFn);
+    const sortedNumbers = filteredNumbers.sort((a,b) => a-b);
+        // If a - b is negative, a comes before b.
+        // If a - b is positive, b comes before a.
+        // If a - b is 0, the order is unchanged.
+    return sortedNumbers
 }
 
-const result = calculateAverageLikes(users);
-console.log(`Average likes per user: ${result.averageLikes}`);
-console.log('Active Users with Popular Posts:', result.userDetails);
-console.log('Number of Active Users:', result.numberOfActiveUsers);
+const isOdd =(num) => num%2 !==0
+console.log(filterAndSort(isOdd, 1,2,10,3,4,5,6));
 
 
 
-// Filters
-const availableFoods = [
-  {id: "qwe234dfh", name: "Burger", image:"🍔🍔", price: 234},
-  {id: "qwe2356dxh", name: "pizza", image:"🍕🍕", price: 400},
-  {id: "qwe2456yh", name: "meat", image:"🍖🍖", price: 500},
-  {id: "qwe2488yh", name: "meat-burger", image:"🍖🍔", price: 750},
-  {id: "qwe2766yh", name: "chicken-pizza", image:"🍕🍗", price: 1050},
-  {id: "qwe2785yh", name: "chicken", image:"🍗🍗", price: 1200},
-];
-const filteredFoods = availableFoods.filter((filteredFoodObject) =>{
-  return filteredFoodObject.price >900
-})
-let totalPrice = 0;
-filteredFoods.forEach((food) =>{
-  totalPrice += food.price;
-});
 
-console.log(filteredFoods);
+// Q2 Create a The function should:
+// 1.	Use the spread operator to merge all objects into one.
+// 2.	Ensure that if multiple objects contain the same key, the last object's value for that key should be used.
+// 3.	Return the merged object
 
-console.log(`My total bill for items above 900: ${totalPrice}`);
+function mergeObjects(...args){
+    const mergedOnj = {...obj11, ...obj12}
+    return mergedOnj
+}
+
+const obj11 ={a:1, b:2};
+const obj12 = {b:3, c:4}
+console.log(mergeObjects(obj11,obj12));
+
+
+
+
+// Q3 Create a  function should:
+// 1.	Use the spread operator to combine all arrays into one.
+// 2.	Remove duplicate elements from the combined array.
+// 3.	Return the new array with unique elements
+
+function combineArrays(...arrays){
+    const combined =[...arr1, ...arr2, ...arr3];
+    const noDuplicate =[...new Set(combined)];   //Emoves the duplicates
+    return noDuplicate
+}
+
+const arr1 = [1,2,3];
+const arr2 = [2,3,4];
+const arr3 = [4,5,6];
+console.log(combineArrays(arr1, arr2, arr3));
+
+
+
+// Q4 Create a function should:
+// 1.	Use the spread operator to combine all arrays into one.
+// 2.	Remove duplicate elements from the combined array.
+// 3.	Return the new array with unique elements.
+
+function extractProperties(objects, ...properties) {
+    return objects.map(obj => {
+        // The spread operator to create a new object with only the specified properties
+        return {
+            ...properties.reduce((newObj, prop) => {
+                if (prop in obj) {
+                    newObj[prop] = obj[prop];  // Add the property if it exists in the current object
+                }
+                return newObj;
+            }, {})
+        };
+    });
+}
+
+const objects = [{ a: 1, b: 2, c: 3 }, { a: 4, b: 5, c: 6 }];
+console.log(extractProperties(objects, 'a', 'c'));
+
